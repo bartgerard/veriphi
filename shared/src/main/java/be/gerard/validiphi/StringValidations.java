@@ -2,7 +2,6 @@ package be.gerard.validiphi;
 
 import org.springframework.util.StringUtils;
 
-import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
@@ -21,7 +20,7 @@ public final class StringValidations {
     }
 
     public static Predicate<String> empty() {
-        return Objects::isNull;
+        return required().negate();
     }
 
     public static Predicate<String> length(int length) {

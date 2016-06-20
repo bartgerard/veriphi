@@ -37,7 +37,7 @@ public final class Validations {
     }
 
     public static <T> Predicate<T> not(Collection<T> invalidValues) {
-        return invalidValues::contains;
+        return in(invalidValues).negate();
     }
 
 }
