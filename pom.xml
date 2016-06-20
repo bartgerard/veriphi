@@ -6,7 +6,26 @@
 
     <groupId>be.gerard</groupId>
     <artifactId>validiphi</artifactId>
+    <packaging>pom</packaging>
     <version>0.1</version>
 
+    <modules>
+        <module>shared</module>
+    </modules>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!-- Spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>4.3.0.RELEASE</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
     
 </project>
