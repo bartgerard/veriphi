@@ -1,4 +1,4 @@
-package be.gerard.validiphi;
+package be.gerard.veriphi;
 
 import org.junit.Test;
 

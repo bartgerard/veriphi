@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>be.gerard</groupId>
-    <artifactId>validiphi</artifactId>
+    <artifactId>veriphi</artifactId>
     <packaging>pom</packaging>
     <version>0.1</version>
 
