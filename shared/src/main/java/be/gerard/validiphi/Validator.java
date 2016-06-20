@@ -15,8 +15,13 @@ public class Validator<T> {
         return null;
     }
 
-    public <U> Validator<T> validate(Function<T, U> projection, Predicate<T> validation, String message) {
+    public Validator<T> validate(Predicate<T> validation, String message) {
         return null;
+    }
+
+    public <V> Validator<T> validate(Function<T, V> projection, Predicate<V> validation, String message) {
+        //return validate(t -> validation.test(projection.apply(t)), message);
+        return validate(projection.andThen(validation::test)::apply, message);
     }
 
     public T get() throws IllegalStateException {
