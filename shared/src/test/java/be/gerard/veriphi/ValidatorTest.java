@@ -1,6 +1,6 @@
 package be.gerard.veriphi;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * ValidatorTest
@@ -8,17 +8,18 @@ import org.junit.Test;
  * @author bartgerard
  * @version v0.0.1
  */
-public class ValidatorTest {
+class ValidatorTest {
 
     @Test
-    public void test() {
+    void test() {
         TestObject testObject = new TestObject();
 
         //Validator.of(testObject)
         //        .validate();
+
     }
 
-    public class TestObject {
+    static class TestObject {
 
     }
 
