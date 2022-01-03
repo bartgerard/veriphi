@@ -23,14 +23,13 @@ public interface Validator<T> {
             List<String> messages
     );
 
-    @SafeVarargs
     static <T, U> Validator<T> validating(
             Function<T, U> mapping,
-            Validator<U>... validators
+            Validator<U> validator
     ) {
         return new ValidationMapping<>(
                 mapping,
-                List.of(validators)
+                validator
         );
     }
 

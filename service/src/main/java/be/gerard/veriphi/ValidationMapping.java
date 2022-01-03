@@ -10,15 +10,12 @@ import java.util.function.Function;
 public
 class ValidationMapping<T, U> implements Validator<T> {
     Function<T, U> mapping;
-    List<? extends Validator<U>> validators;
+    Validator<U> validator;
 
     @Override
     public void validate(T object, List<String> messages) {
         final U o = mapping.apply(object);
-
-        for (final Validator<U> validator : validators) {
-            validator.validate(o, messages);
-        }
+        validator.validate(o, messages);
     }
 
 }
