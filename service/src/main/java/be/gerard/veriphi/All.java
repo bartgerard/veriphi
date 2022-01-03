@@ -1,15 +1,18 @@
 package be.gerard.veriphi;
 
 import be.gerard.veriphi.api.Validator;
-import lombok.Value;
 
 import java.util.List;
 
-@Value
-public
-class All<T> implements Validator<T> {
+public class All<T> implements Validator<T> {
 
-    List<Validator<T>> validators;
+    private final List<Validator<T>> validators;
+
+    public All(
+            final List<Validator<T>> validators
+    ) {
+        this.validators = validators;
+    }
 
     @Override
     public void validate(

@@ -1,17 +1,22 @@
 package be.gerard.veriphi;
 
 import be.gerard.veriphi.api.Validator;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-@RequiredArgsConstructor
-public
-class Validation<T> implements Validator<T> {
+public class Validation<T> implements Validator<T> {
     private final Predicate<T> validationMethod;
     private final String validationMessage;
+
+    public Validation(
+            Predicate<T> validationMethod,
+            String validationMessage
+    ) {
+        this.validationMethod = validationMethod;
+        this.validationMessage = validationMessage;
+    }
 
     public static <T> Validator<T> validate(
             final Predicate<T> validationMethod,
