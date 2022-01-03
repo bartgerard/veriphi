@@ -1,5 +1,6 @@
 package be.gerard.veriphi;
 
+import be.gerard.veriphi.api.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -47,23 +48,29 @@ class ValidatorTest {
                 )
                 .collect(Collectors.toList());
 
-        final List<String> messages = Validator.validating(TestObject::aString, Validation.hasText("test")
-                        .thenValidating(Validation.required("test"))
-                        .thenValidating(Validation.hasText("test"))
+        final List<String> messages2 = Validator.validating(
+                        TestObject::aString,
+                        Validator.all(
+                                Validation.hasText("test"),
+                                Validation.required("test"),
+                                Validation.hasText("test")
+                        )
                 )
                 .validate(TEST_OBJECT_2);
 
-        Assertions.assertThat(messages).isNotEmpty();
+        Assertions.assertThat(messages2)
+                .isNotEmpty();
 
+        final List<String> messages3 = Validator.validating(
+                        TestObject::aString,
+                        Validation.hasText("test")
+                                .thenValidating(Validation.required("test"))
+                                .thenValidating(Validation.hasText("test"))
+                )
+                .validate(TEST_OBJECT_2);
 
-        /*
-        (
-            TestObject::aString,
-            all(
-
-            )
-        )
-        */
+        Assertions.assertThat(messages3)
+                .isNotEmpty();
     }
 
     record TestObject(
