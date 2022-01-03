@@ -8,26 +8,33 @@ import java.util.function.Predicate;
 
 @RequiredArgsConstructor
 public class Validation<T> implements Validator<T> {
-    private final Predicate<T> a;
-    private final String message;
-    private final Validator<T> nextValidator;
+    private final Predicate<T> validationMethod;
+    private final String validationMessage;
+    private final Validator<T> nextValidator; // TODO move to firstOnly(..) or all(..)
 
-    public Validation(Predicate<T> a, String message) {
-        this(a, message, null);
+    public Validation(Predicate<T> validationMethod, String message) {
+        this(validationMethod, message, null);
+    }
+
+    public static <T> Validation<T> validate(
+            final Predicate<T> validationMethod,
+            final String validationMessage
+    ) {
+        return new Validation<>(validationMethod, validationMessage);
     }
 
     public static Validation<String> hasText(final String label) {
-        return new Validation<>(Objects::nonNull, label);
+        return validate(Objects::nonNull, label);
     }
 
     public static <T> Validation<T> required(final String label) {
-        return new Validation<>(Objects::nonNull, label);
+        return validate(Objects::nonNull, label);
     }
 
     public Validation<T> thenValidating(
             final Validator<T> validator
     ) {
-        return new Validation<>(a, message, validator);
+        return new Validation<>(validationMethod, validationMessage, validator);
     }
 
     @Override
@@ -35,8 +42,8 @@ public class Validation<T> implements Validator<T> {
             T object,
             List<String> messages
     ) {
-        if (!a.test(object)) {
-            messages.add(message);
+        if (!validationMethod.test(object)) {
+            messages.add(validationMessage);
         } else {
             nextValidator.validate(object, messages);
         }

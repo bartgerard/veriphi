@@ -27,7 +27,7 @@ public interface Validator<T> {
     //}
 
     @SafeVarargs
-    static <T, U> ValidationMapping<T,U> validating(
+    static <T, U> ValidationMapping<T, U> validating(
             Function<T, U> mapping,
             Validator<U>... validations
     ) {
@@ -35,6 +35,30 @@ public interface Validator<T> {
                 mapping,
                 List.of(validations)
         );
+    }
+
+    class FistOnly<T> implements Validator<T> {
+
+        @Override
+        public void validate(
+                T object,
+                List<String> messages
+        ) {
+
+        }
+
+    }
+
+    class All<T> implements Validator<T> {
+
+        @Override
+        public void validate(
+                T object,
+                List<String> messages
+        ) {
+
+        }
+
     }
 
 

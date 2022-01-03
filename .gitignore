@@ -83,11 +83,5 @@ Thumbs.db
 *-private.properties
 *-local.properties
 
-/quiz/web/src/main/resources/static/
-/quiz/web/src/main/resources/public/
-
-/western-empires/web/src/main/resources/static/
-/western-empires/web/src/main/resources/public/
-
 ### Other ###
 *.log

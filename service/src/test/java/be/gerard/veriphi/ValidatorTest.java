@@ -49,11 +49,21 @@ class ValidatorTest {
 
         final List<String> messages = Validator.validating(TestObject::aString, Validation.hasText("test")
                         .thenValidating(Validation.required("test"))
+                        .thenValidating(Validation.hasText("test"))
                 )
                 .validate(TEST_OBJECT_2);
 
         Assertions.assertThat(messages).isNotEmpty();
 
+
+        /*
+        (
+            TestObject::aString,
+            all(
+
+            )
+        )
+        */
     }
 
     record TestObject(
